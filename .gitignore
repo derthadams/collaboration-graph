@@ -1,4 +1,5 @@
 config.py
+neo_config.py
 .idea/
 venv/
 *.log
