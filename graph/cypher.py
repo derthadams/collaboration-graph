@@ -9,6 +9,16 @@ def open_neo4j_session():
 
 
 def get_crew_list(tx, label):
-    return tx.run("MATCH (p) WHERE $label IN labels(p)"
-                  "RETURN p.fullName",
+    return tx.run("MATCH (p) WHERE $label IN labels(p) "
+                  "RETURN p.fullName ",
                   label=label)
+
+
+def get_name_index(tx, query):
+    return tx.run("MATCH (p:Person) WHERE p.fullName CONTAINS $query "
+                  "RETURN p.fullName, p.uuid ", query=query)
+
+
+def get_first_neighbors(tx, uuid):
+    return tx.run("MATCH(p:Person {uuid: $uuid})-[r:WORKED_WITH]-(q:Person) "
+                  "return r.startDate, q.fullName) ", uuid=uuid)
