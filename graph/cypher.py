@@ -19,6 +19,14 @@ def get_name_index(tx, query):
                   "RETURN p.fullName, p.uuid ", query=query)
 
 
-def get_first_neighbors(tx, uuid):
-    return tx.run("MATCH(p:Person {uuid: $uuid})-[r:WORKED_WITH]-(q:Person) "
-                  "return r.startDate, q.fullName) ", uuid=uuid)
+# def get_first_neighbors_0(tx, uuid):
+#     return tx.run("MATCH(p:Person {uuid: $uuid})-[r:WORKED_WITH]-(q:Person) "
+#                   "return r.startDate, q.fullName) ", uuid=uuid)
+
+
+def get_first_neighbors(tx, uuid, parent_uuid):
+    return tx.run("MATCH(p:Person {uuid: $uuid})-"
+                  "[r:WORKED_WITH]-(q:Person) "
+                  "WHERE NOT q.uuid = $parent_uuid "
+                  "RETURN r.startDate, q.fullName, q.uuid ",
+                  uuid=uuid, parent_uuid=parent_uuid)
