@@ -20,8 +20,8 @@ def index(request):
         results = session.read_transaction(get_crew_list, 'Person')
         for result in results:
             name_list.append(result['p.fullName'])
-        # for name in name_list:
-        #     print(name)
+        for name in name_list:
+            print(name)
     session.close()
     template = loader.get_template('graph/index.html')
     context = {
