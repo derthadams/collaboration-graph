@@ -16,7 +16,8 @@ def open_neo4j_session():
 
 def get_name_index(tx, query):
     return tx.run("MATCH (p:Person) WHERE p.fullName CONTAINS $query "
-                  "RETURN p.fullName, p.uuid ", query=query)
+                  "RETURN p.fullName, p.uuid, p.jobTitle, p.season_list ",
+                  query=query)
 
 
 # def get_first_neighbors_0(tx, uuid):
