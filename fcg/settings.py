@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiCongig',
     'graph.apps.GraphConfig',
     'django.contrib.admin',
     'django.contrib.auth',
