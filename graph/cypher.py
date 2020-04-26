@@ -20,9 +20,10 @@ def get_name_index(tx, query):
                   query=query)
 
 
-# def get_first_neighbors_0(tx, uuid):
-#     return tx.run("MATCH(p:Person {uuid: $uuid})-[r:WORKED_WITH]-(q:Person) "
-#                   "return r.startDate, q.fullName) ", uuid=uuid)
+def get_initial_node(tx, uuid):
+    return tx.run("MATCH (p:Person) WHERE p.uuid is $uuid "
+                  "RETURN p.fullName, p.uuid, p.jobTitle, p.season_list ",
+                  uuid=uuid)
 
 
 def get_first_neighbors(tx, uuid, parent_uuid):
