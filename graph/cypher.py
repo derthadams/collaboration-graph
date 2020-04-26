@@ -28,7 +28,10 @@ def get_initial_node(tx, uuid):
 
 def get_first_neighbors(tx, uuid, parent_uuid):
     return tx.run("MATCH(p:Person {uuid: $uuid})-"
-                  "[r:WORKED_WITH]-(q:Person) "
-                  "WHERE NOT q.uuid = $parent_uuid "
-                  "RETURN r.startDate, q.fullName, q.uuid ",
+                  "     [r:WORKED_WITH]-(q:Person) "
+                  "WHERE NOT q.uuid = $parent_uuid AND "
+                  "     r.endDate >= date('2015-01-01') "
+                  "RETURN r.uuid, r.startDate, r.endDate, "
+                  "     r.seasons_in_common, r.season_list, q.uuid, "
+                  "     q.fullName, q.season_list, q.jobTitle ",
                   uuid=uuid, parent_uuid=parent_uuid)
