@@ -32,17 +32,23 @@ def get_first_neighbors(tx, uuid, parent_uuid):
                   uuid=uuid, parent_uuid=parent_uuid)
 
 
-def parse_neighbor_results(parent_uuid, results):
+def parse_neighbor_results(uuid, parent_uuid):
+    results = []
+    neo_driver = open_neo4j_session()
+    with neo_driver.session() as session:
+        results = session.read_transaction(get_first_neighbors, uuid, parent_uuid)
+    session.close()
+
     nodes = []
     edges = []
     for result in results:
         rel = {
             'data': {
                 'id': result['r.uuid'],
-                'source': parent_uuid,
+                'source': uuid,
                 'target': result['q.uuid'],
-                'startDate': result['r.startDate'].to_native().strftime("%Y"),
-                'endDate': result['r.endDate'].to_native().strftime("%Y"),
+                'start_date': result['r.startDate'].to_native().strftime("%Y"),
+                'end_date': result['r.endDate'].to_native().strftime("%Y"),
                 'count': result['r.seasons_in_common'],
                 'season_list': result['r.season_list'],
             },
@@ -53,9 +59,9 @@ def parse_neighbor_results(parent_uuid, results):
         node = {
             'data': {
                 'id': result['q.uuid'],
-                'parent': parent_uuid,
-                'fullName': result['q.fullName'],
-                'jobTitle': result['q.jobTitle'],
+                'parent': uuid,
+                'full_name': result['q.fullName'],
+                'job_title': result['q.jobTitle'],
                 'season_list': result['q.season_list']
             }
         }
