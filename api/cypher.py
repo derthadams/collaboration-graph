@@ -16,7 +16,7 @@ def get_name_index(tx, term):
 
 
 def get_initial_node(tx, uuid):
-    return tx.run("MATCH (p:Person) WHERE p.uuid is $uuid "
+    return tx.run("MATCH (p:Person) WHERE p.uuid = $uuid "
                   "RETURN p.fullName, p.uuid, p.jobTitle, p.season_list ",
                   uuid=uuid)
 
