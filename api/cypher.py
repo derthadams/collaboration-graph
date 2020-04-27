@@ -73,13 +73,20 @@ def parse_neighbor_results(uuid, parent_uuid):
     return elements
 
 
-def parse_name_list_results(results):
+def parse_name_list(term):
+    results = []
+    neo_driver = open_neo4j_session()
+    with neo_driver.session() as session:
+        results = session.read_transaction(get_name_index, term)
+    session.close()
+
     name_list = []
     for result in results:
         person = {
             'value': result['p.uuid'],
             'label': result['p.fullName'],
-            'jobTitle': result['p.jobTitle']
+            'job_title': result['p.jobTitle'],
+            'season_list': result['p.season_list']
         }
         name_list.append(person)
     return name_list
