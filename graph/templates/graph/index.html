@@ -1,19 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static  "graph/style.css"%}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.14.1/cytoscape.min.js"></script>
+    <script src="{% static "graph/cytoscape-cxtmenu.js"%}"></script>
+    <script src="{% static "cola.min.js"%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-cola@2.3.0/cytoscape-cola.js"></script>
+    <title>Network View Page</title>
 </head>
 <body>
-<h1>Graph Page</h1>
-{% if name_list %}
-    <ul>
-    {% for name in name_list %}
-        <li>{{ name }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No names are available.</p>
-{% endif %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="col-md-4 col-xl-4 bd-sidebar py-1">
+            <form role="search" class="bd-search d-flex align-items-center">
+                <input type="search" class="form-control" id="search-input" placeholder="Search..."
+                       aria-label="Search for..." autocomplete="off" data-docs-version="4.4">
+                <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
+                        data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"></button>
+            </form>
+        </div>
+    </nav>
+    <div id="graph">
+    </div>
+     <div class="container-fluid">
+            <div class="row justify-content-left px-3 py-4">
+                <div class="col-md-4 col-xl-4" id="info-panel">
+                    <div class="card shadow-sm name-header">
+                        <div class="card-body py-3">
+                            <h5 class="card-title">Derth Adams</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Camera Operator</h6>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm my-2 credit-list">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Ryan's Mystery Playdate S3 (2020)</li>
+                            <li class="list-group-item">Prop Culture S1 (2020)</li>
+                            <li class="list-group-item">Cannonball S1 (2020)</li>
+                            <li class="list-group-item">Tournament of Champions S1 (2020)</li>
+                            <li class="list-group-item">24 Hours to Hell and Back S3 (2019)</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
