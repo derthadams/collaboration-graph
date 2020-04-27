@@ -1,5 +1,5 @@
 from neo4j import GraphDatabase, basic_auth
-from fcg.graph.neo_config import *
+from .neo_config import *
 # import pprint
 
 
