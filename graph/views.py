@@ -1,12 +1,14 @@
+from django.http import HttpResponse
+from django.template import loader
 # Create your views here.
 
 
 # def index(request):
-    # template = loader.get_template('graph/index.html')
+    # template = loader.get_template('graph/index_demo.html')
     # context = {}
     # return HttpResponse("Hello, world. You're at the graph index.")
     # return HttpResponse(template.render(context, request))
-    # return render(request, 'graph/index.html')
+    # return render(request, 'graph/index_demo.html')
 
 # def index(request):
 #     name_list = []
@@ -18,8 +20,14 @@
 #         for name in name_list:
 #             print(name)
 #     session.close()
-#     template = loader.get_template('graph/index.html')
+#     template = loader.get_template('graph/index_demo.html')
 #     context = {
 #         'name_list': name_list,
 #     }
 #     return HttpResponse(template.render(context, request))
+
+def index(request):
+    template = loader.get_template('graph/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
