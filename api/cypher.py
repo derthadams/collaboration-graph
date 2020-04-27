@@ -9,16 +9,10 @@ def open_neo4j_session():
     return neo_driver
 
 
-# def get_crew_list(tx, label):
-#     return tx.run("MATCH (p) WHERE $label IN labels(p) "
-#                   "RETURN p.fullName ",
-#                   label=label)
-
-
-def get_name_index(tx, query):
-    return tx.run("MATCH (p:Person) WHERE p.fullName CONTAINS $query "
+def get_name_index(tx, term):
+    return tx.run("MATCH (p:Person) WHERE p.fullName CONTAINS $term "
                   "RETURN p.fullName, p.uuid, p.jobTitle, p.season_list ",
-                  query=query)
+                  term=term)
 
 
 def get_initial_node(tx, uuid):
