@@ -1,6 +1,5 @@
 from neo4j import GraphDatabase, basic_auth
 from .neo_config import *
-# import pprint
 
 
 def open_neo4j_session():
@@ -36,7 +35,8 @@ def parse_neighbor_results(uuid, parent_uuid):
     results = []
     neo_driver = open_neo4j_session()
     with neo_driver.session() as session:
-        results = session.read_transaction(get_first_neighbors, uuid, parent_uuid)
+        results = session.read_transaction(get_first_neighbors,
+                                           uuid, parent_uuid)
     session.close()
 
     nodes = []
