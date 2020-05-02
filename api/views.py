@@ -18,7 +18,7 @@ class ListAPIView(View):
     def get(self, request, *args, **kwargs):
         term = self.request.GET.get('term')
         name_list = parse_name_list(term)
-        return JsonResponse(name_list, safe=False)
+        return JsonResponse(name_list)
 
 
 class RootAPIView(View):
