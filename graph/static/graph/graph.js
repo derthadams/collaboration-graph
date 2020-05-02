@@ -110,7 +110,6 @@ let cxtMenuPrefs = {
         {
             content: '<span><img src="" id="expand" alt="Expand"style="width:100%"></span>',
             select: function(ele){
-                // console.log( ele.position() );
                 fetch('/api/neighbors/?uuid=' + ele.data('id') +
                     '&parent_uuid=' + ele.data('par'))
                     .then(response => response.json())
@@ -181,9 +180,6 @@ function loadCy(elements) {
             jobList.appendChild(jobCard);
         });
         infoPanel.classList.add('visible');
-        // setContextMenus();
-        // node.select();
-        // node.json({ selected: true });
         console.log( 'tapped ' + node.id() );
         console.log( node.data('full_name'));
         console.log( node.data('id'));
