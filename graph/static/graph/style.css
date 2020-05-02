@@ -12,16 +12,11 @@
     left: 0;
 }
 
-.name-header {
-    /*opacity: .8;*/
-}
-
-.credit-list {
-    /*opacity: .8;*/
-    /*visibility: hidden;*/
-}
-
 #info-panel {
     opacity: .8;
     visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
 }
