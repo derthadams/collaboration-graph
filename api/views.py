@@ -9,8 +9,9 @@ from .cypher import *
 class NeighborsAPIView(View):
     def get(self, request, *args, **kwargs):
         uuid = self.request.GET.get('uuid')
-        parent_uuid = self.request.GET.get('parent_uuid')
-        elements = parse_neighbor_results(uuid, parent_uuid)
+        # parent_uuid = self.request.GET.get('parent_uuid')
+        # elements = parse_neighbor_results(uuid, parent_uuid)
+        elements = parse_neighbor_results(uuid)
         return JsonResponse(elements)
 
 
