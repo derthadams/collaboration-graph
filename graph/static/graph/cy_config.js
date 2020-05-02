@@ -1,5 +1,5 @@
 export let cyPrefs = {
-    container: document.getElementById('graph'), // container to render in
+    container: document.getElementById('graph'),
     // autounselectify: true,
     boxSelectionEnabled: false,
     maxZoom: 100,
@@ -80,7 +80,7 @@ export let cxtMenuPrefs = {
     commands: [
         {
             // content: '<span class="fa fa-compress-arrows-alt fa-2x"></span>',
-            content: '<span id="collapse"> <img src="img/node_collapse_sm.png" alt="Collapse" ' +
+            content: '<span id="collapse"> <img src="static/graph/img/node_collapse_sm.png" alt="Collapse" ' +
                 'style="width:100%"></span>',
             select: function(ele){
                 console.log( ele.id() );
@@ -88,7 +88,7 @@ export let cxtMenuPrefs = {
         },
 
         {
-            content: '<span id="delete"><img src="img/delete_sm.png" alt="Delete"' +
+            content: '<span id="delete"><img src="/img/delete_sm.png" alt="Delete"' +
                 ' style="width:70%"></span>',
             select: function(ele){
                 console.log( ele.data('name') );
@@ -98,11 +98,19 @@ export let cxtMenuPrefs = {
 
         {
             // content: '<span class="fa fa-expand-arrows-alt fa-2x"></span>',
-            content: '<span id="expand"> <img src="img/expanded_sm.png" alt="Expand" style="width:100%">' +
+            content: '<span id="expand"> <img src="static/graph/img/expanded_sm.png" alt="Expand" style="width:100%">' +
                 ' </span>',
             select: function(ele){
-                console.log( ele.position() );
+                // console.log( ele.position() );
+                fetch('/api/neighbors/?uuid=' + ele.data('uuid') +
+                    '&parent_uuid=' + ele.data('parent'))
+                    .then(response => response.json)
+                    .then((data) => {
+                        let elements = data.elements;
+                        cy.add(elements);
+
+                    })
             }
         }
     ]
-    };
+};
