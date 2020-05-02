@@ -1,85 +1,14 @@
-// import { cyPrefs, cxtMenuPrefs } from "./cy_config.js";
-
-let cyPrefs = {
-    container: document.getElementById('graph'),
-    // autounselectify: true,
-    boxSelectionEnabled: false,
-    maxZoom: 100,
-    minZoom: 0.5,
-    zoom: 1,
-
-    elements: [],
-
-    style: [ // the stylesheet for the graph
-        {
-            selector: 'node',
-            style: {
-                'width': 40,
-                'height': 40,
-                'text-halign': 'center',
-                'text-valign': 'center',
-                'text-wrap': 'wrap',
-                'font-size': 8,
-                'text-max-width': 40,
-                'background-color': '#F2F4F4',
-                'border-width': 3,
-                'border-color': '#666',
-                'label': 'data(full_name)'
-            }
-        },
-
-        {
-            selector: 'node:selected',
-            style: {
-                // 'width': 10,
-                // 'height': 10,
-                'background-color': '#F2F4F4',
-                'border-width': 3,
-                'border-color': '#F5B041',
-                // 'label': 'data(full_name)'
-            }
-        },
-
-        {
-            selector: 'node:active',
-            style: {
-                'overlay-opacity': 0
-            }
-        },
-
-        {
-            selector: 'edge',
-            style: {
-                'width': 2,
-                'line-color': '#ccc',
-                'target-arrow-color': '#ccc',
-                // 'target-arrow-shape': 'triangle',
-                // 'curve-style': 'bezier'
-                'curve-style': 'unbundled-bezier'
-            }
-        }
-    ],
-
-    layout: {
-        name: 'cola',
-        convergenceThreshold: 100, // end layout sooner, may be a bit lower quality
-        animate: false
-    }
-
-};
+import { cyPrefs, layoutPrefs } from "./cy_config.js";
 
 const cy = cytoscape(cyPrefs);
-const layoutPrefs = {
-    name: 'cola'
-    // name: 'cose'
-};
 let graphLayout = cy.layout(layoutPrefs);
+
 const infoPanel = document.getElementById('info-panel');
 const nameHeading = document.getElementById('name-heading');
 const jobHeading = document.getElementById('job-heading');
 const jobList = document.getElementById('job-list');
 
-let cxtMenuPrefs = {
+const cxtMenuPrefs = {
     selector: 'node',
     menuRadius: 100,
     activePadding: 20, // additional size in pixels for the active command
@@ -124,9 +53,7 @@ let cxtMenuPrefs = {
     ]
 };
 
-
 cy.cxtmenu(cxtMenuPrefs);
-
 
 window.addEventListener('DOMContentLoaded', function() {
    fetch('/api/root/?uuid=75e33b3f-19b1-4c18-9e36-abd124656be7')
