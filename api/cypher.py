@@ -93,7 +93,7 @@ def parse_neighbor_results(uuid, parent_uuid):
             'group': 'nodes',
             'data': {
                 'id': result['q.uuid'],
-                'parent': uuid,
+                'par': uuid,
                 'full_name': result['q.fullName'],
                 'job_title': result['q.jobTitle'],
                 'season_list': result['q.season_list']
@@ -155,7 +155,7 @@ def parse_initial_node(uuid):
             'group': 'nodes',
             'data': {
                 'id': result['p.uuid'],
-                'parent': '0',
+                'par': '0',
                 'full_name': result['p.fullName'],
                 'job_title': result['p.jobTitle'],
                 'season_list': result['p.season_list']
