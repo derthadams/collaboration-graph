@@ -65,10 +65,15 @@ const cxtMenuPrefs = {
                     '&parent_uuid=' + ele.data('par'))
                     .then(response => response.json())
                     .then((data) => {
+                        ele.data('expanded', 'true');
                         let elements = data.elements;
                         cy.add(elements);
-                        graphLayout = cy.layout(layoutPrefs);
-                        graphLayout.run();
+                        refreshGraph();
+                        let selected = cy.$('node:selected');
+                        selected.unselect();
+                        ele.select();
+                        unselectEdges();
+                        selectEdges(ele.id())
                     })
             }
         }
