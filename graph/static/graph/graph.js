@@ -141,10 +141,10 @@ function loadCy(elements) {
             jobList.appendChild(jobCard);
         });
         infoPanel.classList.add('visible');
-        console.log( 'tapped ' + node.id() );
-        console.log( node.data('full_name'));
-        console.log( node.data('id'));
-        console.log(node.selected());
-        console.log(cy.zoom())
+        // console.log( 'tapped ' + node.id() );
+        // console.log( node.data('full_name'));
+        // console.log( node.data('id'));
+        // console.log(node.selected());
+        // console.log(cy.zoom())
 });
 }
