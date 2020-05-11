@@ -53,9 +53,9 @@ const cxtMenuPrefs = {
         {
             content: '<span><img src="" id="delete" alt="Delete" style="width:70%"></span>',
             select: function(ele){
-                console.log( ele.data('name') );
+                cy.remove(ele);
+                refreshGraph();
             },
-            // enabled: false
         },
 
         {
