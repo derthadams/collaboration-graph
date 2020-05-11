@@ -92,6 +92,14 @@ export const cyPrefs = {
                 'curve-style': 'bezier'
                 // 'curve-style': 'unbundled-bezier'
             }
+        },
+
+        {
+            selector: '.selected-edge',
+            style: {
+                'width': 2.5,
+                'line-color': '#F5B041'
+            }
         }
     ],
 
