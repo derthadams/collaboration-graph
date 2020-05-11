@@ -39,7 +39,14 @@ const cxtMenuPrefs = {
         {
             content: '<span><img src="" id="collapse" alt="Collapse" style="width:100%"></span>',
             select: function(ele){
-                console.log( ele.id() );
+                ele.data('expanded', 'false');
+                // const children = cy.elements('node[par = "' + ele.id() + '"][expanded = "false"], edge[source = "' + ele.id() + '"]');
+                const children = cy.elements('node[par = "' + ele.id() + '"][expanded = "false"]');
+                for (let edge of cy.elements('edge[source = "' + ele.id() + '"]')) {
+                    console.log(edge.data('source'), edge.data('target'));
+                }
+                cy.remove(children);
+                refreshGraph();
             }
         },
 
