@@ -116,7 +116,7 @@ function loadCy(elements) {
         if (evt.target === cy)
         {
             infoPanel.classList.remove('visible');
-
+            unselectEdges();
         }
     });
 
