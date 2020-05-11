@@ -122,6 +122,13 @@ function loadCy(elements) {
 
     cy.on('tap', 'node', function(evt){
         let node = evt.target;
+        console.log('You just clicked ' + node.id());
+        unselectEdges();
+        selectEdges(node.id());
+        // for (let edge of edges) {
+        //     console.log(edge.data('source'));
+        // }
+
         nameHeading.innerText = node.data('full_name');
         jobHeading.innerText = node.data('job_title');
         while(jobList.firstChild) {
