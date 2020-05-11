@@ -8,6 +8,21 @@ const nameHeading = document.getElementById('name-heading');
 const jobHeading = document.getElementById('job-heading');
 const jobList = document.getElementById('job-list');
 
+function refreshGraph() {
+    graphLayout = cy.layout(layoutPrefs);
+    graphLayout.run();
+}
+
+function selectEdges(nodeID) {
+    let edges = cy.elements('edge[source = "' + nodeID + '"], edge[target = "' + nodeID + '"]');
+    edges.addClass('selected-edge');
+}
+
+function unselectEdges() {
+    let selected_edges = cy.$('.selected-edge');
+    selected_edges.removeClass('selected-edge');
+}
+
 const cxtMenuPrefs = {
     selector: 'node',
     menuRadius: 100,
