@@ -20,17 +20,6 @@ def get_initial_node(tx, uuid):
                   uuid=uuid)
 
 
-# def get_first_neighbors(tx, uuid, parent_uuid):
-#     return tx.run("MATCH(p:Person {uuid: $uuid})-"
-#                   "     [r:WORKED_WITH]-(q:Person) "
-#                   "WHERE NOT q.uuid = $parent_uuid AND "
-#                   "     r.endDate >= date('2015-01-01') "
-#                   "RETURN r.uuid, r.startDate, r.endDate, "
-#                   "     r.seasons_in_common, r.season_list, q.uuid, "
-#                   "     q.fullName, q.season_list, q.jobTitle ",
-#                   uuid=uuid, parent_uuid=parent_uuid)
-
-
 def get_first_neighbors(tx, uuid):
     return tx.run("MATCH(p:Person {uuid: $uuid})-"
                   "     [r:WORKED_WITH]-(q:Person) "
@@ -42,45 +31,10 @@ def get_first_neighbors(tx, uuid):
 
 
 def parse_neighbor_results(uuid):
-# def parse_neighbor_results(uuid, parent_uuid):
-    results = []
     neo_driver = open_neo4j_session()
     with neo_driver.session() as session:
         results = session.read_transaction(get_first_neighbors, uuid)
     session.close()
-
-    # nodes = []
-    # edges = []
-    # for result in results:
-    #     rel = {
-    #         'data': {
-    #             'id': result['r.uuid'],
-    #             'source': uuid,
-    #             'target': result['q.uuid'],
-    #             'start_date': result['r.startDate'].to_native().strftime("%Y"),
-    #             'end_date': result['r.endDate'].to_native().strftime("%Y"),
-    #             'count': result['r.seasons_in_common'],
-    #             'season_list': result['r.season_list'],
-    #         },
-    #
-    #     }
-    #     edges.append(rel)
-    #
-    #     node = {
-    #         'data': {
-    #             'id': result['q.uuid'],
-    #             'parent': uuid,
-    #             'full_name': result['q.fullName'],
-    #             'job_title': result['q.jobTitle'],
-    #             'season_list': result['q.season_list']
-    #         }
-    #     }
-    #     nodes.append(node)
-    # elements = {
-    #     'nodes': nodes,
-    #     'edges': edges
-    # }
-    # return elements
 
     elements = []
     for result in results:
@@ -118,7 +72,6 @@ def parse_neighbor_results(uuid):
 
 
 def parse_name_list(term):
-    results = []
     neo_driver = open_neo4j_session()
     with neo_driver.session() as session:
         results = session.read_transaction(get_name_index, term)
@@ -146,21 +99,6 @@ def parse_initial_node(uuid):
         results = session.read_transaction(get_initial_node, uuid)
     session.close()
 
-    # for result in results:
-    #     node = {
-    #         'data': {
-    #             'id': result['p.uuid'],
-    #             # 'parent': None,
-    #             'full_name': result['p.fullName'],
-    #             'job_title': result['p.jobTitle'],
-    #             'season_list': result['p.season_list']
-    #         }
-    #     }
-    #     nodes.append(node)
-    # elements = {
-    #     'nodes': nodes
-    # }
-    # elements = []
     for result in results:
         node = {
             'group': 'nodes',
