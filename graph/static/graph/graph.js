@@ -62,8 +62,7 @@ const cxtMenuPrefs = {
         {
             content: '<span><img src="" id="expand" alt="Expand"style="width:100%"></span>',
             select: function(ele){
-                fetch('/api/neighbors/?uuid=' + ele.data('id') +
-                    '&parent_uuid=' + ele.data('par'))
+                fetch('/api/neighbors/?uuid=' + ele.data('id'))
                     .then(response => response.json())
                     .then((data) => {
                         ele.data('expanded', 'true');
