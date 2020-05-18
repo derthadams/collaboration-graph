@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static  "graph/style.css"%}">
+    <link rel="stylesheet" href="{% static "graph/jquery-ui.min.css" %}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.14.1/cytoscape.min.js"></script>
     <script src="{% static "graph/cytoscape-cxtmenu.js"%}"></script>
     <script src="{% static "graph/cola.min.js"%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-cola@2.3.0/cytoscape-cola.js"></script>
-    <script src="{% static "graph/auto-complete.min.js" %}"></script>
+{#    <script src="{% static "graph/auto-complete.min.js" %}"></script>#}
+{#    <script src="{% static "graph/awesomplete.js" %}"></script>#}
     <script>
         let img_url = "{% static '/graph/img/' %}"
     </script>
@@ -24,7 +26,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="col-md-4 col-xl-4 bd-sidebar py-1">
-            <form role="search" class="bd-search d-flex align-items-center">
+            <form role="search" class="bd-search d-flex align-items-center" id="search-form">
                 <input type="search" class="form-control" id="search-input" placeholder="Search..."
                        aria-label="Search for..." autocomplete="off" data-docs-version="4.4">
                 <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
@@ -55,6 +57,8 @@
                 </div>
             </div>
         </div>
+    <script src="{% static "graph/jquery.js" %}"></script>
+    <script src="{% static "graph/jquery-ui.min.js" %}"></script>
     <script type = "module" src="{% static '/graph/graph.js' %}"></script>
 </body>
 </html>
