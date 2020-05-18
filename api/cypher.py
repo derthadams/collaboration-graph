@@ -9,7 +9,7 @@ def open_neo4j_session():
 
 
 def get_name_index(tx, term):
-    return tx.run("MATCH (p:Person) WHERE p.fullName CONTAINS $term "
+    return tx.run("MATCH (p:Person) WHERE toLower(p.fullName) CONTAINS $term "
                   "RETURN p.fullName, p.uuid, p.jobTitle, p.season_list ",
                   term=term)
 
