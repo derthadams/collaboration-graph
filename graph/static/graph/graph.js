@@ -3,6 +3,8 @@ import { cyPrefs, layoutPrefs } from "./cy_config.js";
 const cy = cytoscape(cyPrefs);
 let graphLayout = cy.layout(layoutPrefs);
 
+const searchBox = document.getElementById('search-input');
+const searchForm = document.getElementById('search-form');
 const infoPanel = document.getElementById('info-panel');
 const nameHeading = document.getElementById('name-heading');
 const jobHeading = document.getElementById('job-heading');
@@ -22,6 +24,27 @@ function unselectEdges() {
     let selected_edges = cy.$('.selected-edge');
     selected_edges.removeClass('selected-edge');
 }
+
+function addNode(node) {
+    // let cyNode = cy.elements('node[id = "' + node.id + '"]');
+    console.log(node.id);
+    // let cyNode = cy.$('#"' + node.id + '"');
+    let cyNode = cy.getElementById('"' + node.id + '"');
+    if(cyNode.length) {
+        console.log(cyNode);
+        let selected = cy.$('node:selected');
+        selected.unselect();
+        cyNode.select();
+    }
+    else {
+        console.log("No cyNode");
+        console.log(cyNode);
+        cy.add(node);
+        refreshGraph();
+        // loadCy(node);
+    }
+}
+
 
 const cxtMenuPrefs = {
     selector: 'node',
@@ -83,20 +106,67 @@ const cxtMenuPrefs = {
 cy.cxtmenu(cxtMenuPrefs);
 
 window.addEventListener('DOMContentLoaded', function() {
-   fetch('/api/root/?uuid=75e33b3f-19b1-4c18-9e36-abd124656be7')
-       .then(response => response.json())
-       .then((data) => {
-           let elements = data.nodes;
-           console.log(elements);
-           loadCy(elements);
-           }
-       );
+    let elements = [];
+    loadCy(elements);
 });
+
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+});
+
+$("#search-input").autocomplete({
+    delay: 10,
+    minLength: 3,
+    source: function(request, response) {
+        fetch('/api/list/?term=' + request.term)
+            .then(res => res.json())
+            .then((data) => {
+                response(data.name_list);
+                // console.log(data.name_list);
+            })
+    },
+    select: function(event, ui) {
+        event.preventDefault();
+        searchBox.value = '';
+        console.log(ui);
+        const node = {
+            group: 'nodes',
+            data: {
+                id: ui.item.value,
+                par: 0,
+                expanded: 'false',
+                full_name: ui.item.label,
+                job_title: ui.item.job_title,
+                season_list: ui.item.season_list
+            }
+        };
+        // const elements = [node];
+        // loadCy(elements);
+        addNode(node);
+    }
+});
+
+// const searchBox = new Awesomplete(input, )
+
+// const searchBox = new autoComplete({
+//     selector: 'input[id="search-input"]',
+//     source: function(term, response) {
+//         fetch('/api/list/?term=' + term)
+//             .then(res => res.json())
+//             .then((data) =>{
+//                 response(data);
+//             })
+//     }
+//     }
+// );
+
+
 
 function loadCy(elements) {
     cy.add(elements);
     cy.maxZoom(1);
-    graphLayout.run();
+    refreshGraph();
+    // graphLayout.run();
 
     cy.on('layoutstop', function() {
         cy.fit();
@@ -125,9 +195,7 @@ function loadCy(elements) {
         console.log('You just clicked ' + node.id());
         unselectEdges();
         selectEdges(node.id());
-        // for (let edge of edges) {
-        //     console.log(edge.data('source'));
-        // }
+
 
         nameHeading.innerText = node.data('full_name');
         jobHeading.innerText = node.data('job_title');
@@ -141,10 +209,6 @@ function loadCy(elements) {
             jobList.appendChild(jobCard);
         });
         infoPanel.classList.add('visible');
-        // console.log( 'tapped ' + node.id() );
-        // console.log( node.data('full_name'));
-        // console.log( node.data('id'));
-        // console.log(node.selected());
-        // console.log(cy.zoom())
+
 });
 }
