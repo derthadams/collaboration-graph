@@ -226,19 +226,19 @@ function loadCy(elements) {
         unselectEdges();
         selectEdges(node.id());
 
-
-        nameHeading.innerText = node.data('full_name');
-        jobHeading.innerText = node.data('job_title');
-        while(jobList.firstChild) {
-                jobList.removeChild(jobList.firstChild);
-            }
-        node.data('season_list').forEach( function(job) {
-            let jobCard = document.createElement('li');
-            jobCard.classList.add('list-group-item');
-            jobCard.innerText = job;
-            jobList.appendChild(jobCard);
-        });
-        infoPanel.classList.add('visible');
+        activateInfoPanel(node);
+        // nameHeading.innerText = node.data('full_name');
+        // jobHeading.innerText = node.data('job_title');
+        // while(jobList.firstChild) {
+        //         jobList.removeChild(jobList.firstChild);
+        //     }
+        // node.data('season_list').forEach( function(job) {
+        //     let jobCard = document.createElement('li');
+        //     jobCard.classList.add('list-group-item');
+        //     jobCard.innerText = job;
+        //     jobList.appendChild(jobCard);
+        // });
+        // infoPanel.classList.add('visible');
 
 });
 }
