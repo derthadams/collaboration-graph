@@ -28,23 +28,48 @@ function unselectEdges() {
     selected_edges.removeClass('selected-edge');
 }
 
-function addNode(node) {
-    // let cyNode = cy.elements('node[id = "' + node.id + '"]');
-    console.log(node.id);
-    // let cyNode = cy.$('#"' + node.id + '"');
-    let cyNode = cy.getElementById('"' + node.id + '"');
-    if(cyNode.length) {
-        console.log(cyNode);
-        let selected = cy.$('node:selected');
-        selected.unselect();
-        cyNode.select();
+function makeNodeSelected(node) {
+    let selected = cy.$('node:selected');
+    selected.unselect();
+    node.select();
+    unselectEdges();
+    selectEdges(node.id());
+}
+
+function activateInfoPanel(node) {
+    nameHeading.innerText = node.data('full_name');
+    jobHeading.innerText = node.data('job_title');
+    while(jobList.firstChild) {
+            jobList.removeChild(jobList.firstChild);
+        }
+    node.data('season_list').forEach( function(job) {
+        let jobCard = document.createElement('li');
+        jobCard.classList.add('list-group-item');
+        jobCard.innerText = job;
+        jobList.appendChild(jobCard);
+    });
+    infoPanel.classList.add('visible');
+}
+
+function addNode(nodeJSON) {
+    console.log("Adding:", nodeJSON.data.id);
+    let node = cy.getElementById(nodeJSON.data.id);
+    // Node already exists
+    if(node.length) {
+        makeNodeSelected(node);
+        activateInfoPanel(node);
     }
     else {
         console.log("No cyNode");
-        console.log(cyNode);
-        cy.add(node);
+        console.log(node);
+        cy.add(nodeJSON);
+        console.log("cy.nodes.size()", cy.nodes().size());
+        if (cy.nodes().size()) {
+            let node = cy.getElementById(nodeJSON.data.id);
+            makeNodeSelected(node);
+            activateInfoPanel(node);
+        }
         refreshGraph();
-        // loadCy(node);
     }
 }
 
