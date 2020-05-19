@@ -1,6 +1,7 @@
 import { cyPrefs, layoutPrefs } from "./cy_config.js";
 
 const cy = cytoscape(cyPrefs);
+const graph = document.getElementById('graph');
 let graphLayout = cy.layout(layoutPrefs);
 
 const searchBox = document.getElementById('search-input');
@@ -11,8 +12,10 @@ const jobHeading = document.getElementById('job-heading');
 const jobList = document.getElementById('job-list');
 
 function refreshGraph() {
+    cy.maxZoom(1);
     graphLayout = cy.layout(layoutPrefs);
     graphLayout.run();
+    graph.classList.add('visible');
 }
 
 function selectEdges(nodeID) {

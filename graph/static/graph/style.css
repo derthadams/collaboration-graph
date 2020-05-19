@@ -10,6 +10,7 @@
     position: absolute;
     top: 62px;
     left: 0;
+    visibility: hidden;
 }
 
 #info-panel {
