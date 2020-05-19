@@ -152,8 +152,10 @@ $("#search-input").autocomplete({
             .then(res => res.json())
             .then((data) => {
                 response(data.name_list);
-                // console.log(data.name_list);
             })
+    },
+    focus: function (event, ui) {
+        event.preventDefault();
     },
     select: function(event, ui) {
         event.preventDefault();
@@ -170,8 +172,6 @@ $("#search-input").autocomplete({
                 season_list: ui.item.season_list
             }
         };
-        // const elements = [node];
-        // loadCy(elements);
         addNode(node);
     }
 });
