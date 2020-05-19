@@ -22,8 +22,8 @@ class ListAPIView(View):
         return JsonResponse(name_list)
 
 
-class RootAPIView(View):
-    def get(self, request, *args, **kwargs):
-        uuid = self.request.GET.get('uuid')
-        elements = parse_initial_node(uuid)
-        return JsonResponse(elements)
+# class RootAPIView(View):
+#     def get(self, request, *args, **kwargs):
+#         uuid = self.request.GET.get('uuid')
+#         elements = parse_initial_node(uuid)
+#         return JsonResponse(elements)
