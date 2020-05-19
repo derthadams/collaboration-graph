@@ -120,11 +120,13 @@ const cxtMenuPrefs = {
                         let elements = data.elements;
                         cy.add(elements);
                         refreshGraph();
-                        let selected = cy.$('node:selected');
-                        selected.unselect();
-                        ele.select();
-                        unselectEdges();
-                        selectEdges(ele.id())
+                        makeNodeSelected(ele);
+                        activateInfoPanel(ele);
+                        // let selected = cy.$('node:selected');
+                        // selected.unselect();
+                        // ele.select();
+                        // unselectEdges();
+                        // selectEdges(ele.id())
                     })
             }
         }
