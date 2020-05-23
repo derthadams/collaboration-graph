@@ -52,18 +52,19 @@ function activateInfoPanel(node) {
 }
 
 function addNode(nodeJSON) {
-    console.log("Adding:", nodeJSON.data.id);
+    // console.log("Adding:", nodeJSON.data.id);
     let node = cy.getElementById(nodeJSON.data.id);
-    // Node already exists
+    // Node is already in graph
     if(node.length) {
         makeNodeSelected(node);
         activateInfoPanel(node);
     }
+    // Node is not already in graph
     else {
-        console.log("No cyNode");
-        console.log(node);
+        // console.log("No cyNode");
+        // console.log(node);
         cy.add(nodeJSON);
-        console.log("cy.nodes.size()", cy.nodes().size());
+        // console.log("cy.nodes.size()", cy.nodes().size());
         if (cy.nodes().size()) {
             let node = cy.getElementById(nodeJSON.data.id);
             makeNodeSelected(node);
@@ -72,7 +73,6 @@ function addNode(nodeJSON) {
         refreshGraph();
     }
 }
-
 
 const cxtMenuPrefs = {
     selector: 'node',
@@ -106,6 +106,7 @@ const cxtMenuPrefs = {
             select: function(ele){
                 cy.remove(ele);
                 infoPanel.classList.remove('visible');
+                // console.log('Current size of graph:', cy.nodes().size())
                 refreshGraph();
             },
         },
@@ -155,7 +156,7 @@ $("#search-input").autocomplete({
     select: function(event, ui) {
         event.preventDefault();
         searchBox.value = '';
-        console.log(ui);
+        // console.log(ui);
         const node = {
             group: 'nodes',
             data: {
@@ -183,7 +184,7 @@ function loadCy(elements) {
     });
 
     cy.on('mousedown', 'node', function() {
-        console.log('mousedown');
+        // console.log('mousedown');
         setTimeout(function() {
             document.getElementById('collapse').src = img_url + "node_collapse_sm.png";
             document.getElementById('delete').src = img_url + "delete_sm.png";
@@ -201,7 +202,7 @@ function loadCy(elements) {
 
     cy.on('tap', 'node', function(evt){
         let node = evt.target;
-        console.log('You just clicked ' + node.id());
+        // console.log('You just clicked ' + node.id());
         unselectEdges();
         selectEdges(node.id());
 
