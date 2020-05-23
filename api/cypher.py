@@ -14,12 +14,6 @@ def get_name_index(tx, term):
                   "LIMIT 15 ",
                   term=term)
 
-#
-# def get_initial_node(tx, uuid):
-#     return tx.run("MATCH (p:Person) WHERE p.uuid = $uuid "
-#                   "RETURN p.fullName, p.uuid, p.jobTitle, p.season_list ",
-#                   uuid=uuid)
-
 
 def get_first_neighbors(tx, uuid):
     return tx.run("MATCH(p:Person {uuid: $uuid})-"
