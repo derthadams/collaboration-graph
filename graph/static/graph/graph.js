@@ -122,11 +122,6 @@ const cxtMenuPrefs = {
                         refreshGraph();
                         makeNodeSelected(ele);
                         activateInfoPanel(ele);
-                        // let selected = cy.$('node:selected');
-                        // selected.unselect();
-                        // ele.select();
-                        // unselectEdges();
-                        // selectEdges(ele.id())
                     })
             }
         }
@@ -176,22 +171,6 @@ $("#search-input").autocomplete({
     }
 });
 
-// const searchBox = new Awesomplete(input, )
-
-// const searchBox = new autoComplete({
-//     selector: 'input[id="search-input"]',
-//     source: function(term, response) {
-//         fetch('/api/list/?term=' + term)
-//             .then(res => res.json())
-//             .then((data) =>{
-//                 response(data);
-//             })
-//     }
-//     }
-// );
-
-
-
 function loadCy(elements) {
     cy.add(elements);
     // cy.maxZoom(1);
@@ -227,18 +206,5 @@ function loadCy(elements) {
         selectEdges(node.id());
 
         activateInfoPanel(node);
-        // nameHeading.innerText = node.data('full_name');
-        // jobHeading.innerText = node.data('job_title');
-        // while(jobList.firstChild) {
-        //         jobList.removeChild(jobList.firstChild);
-        //     }
-        // node.data('season_list').forEach( function(job) {
-        //     let jobCard = document.createElement('li');
-        //     jobCard.classList.add('list-group-item');
-        //     jobCard.innerText = job;
-        //     jobList.appendChild(jobCard);
-        // });
-        // infoPanel.classList.add('visible');
-
 });
 }
