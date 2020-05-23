@@ -75,7 +75,7 @@ def parse_neighbor_results(uuid):
 def parse_name_list(term):
     neo_driver = open_neo4j_session()
     with neo_driver.session() as session:
-        results = session.read_transaction(get_name_index, term)
+        results = session.read_transaction(get_name_index, term.lower())
     session.close()
 
     name_list = []
