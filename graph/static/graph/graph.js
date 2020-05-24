@@ -138,7 +138,7 @@ const cxtMenuPrefs = {
         },
 
         {
-            content: '<span><img src="" id="delete" alt="Delete" style="width:70%"></span>',
+            content: '<span><img src="" id="delete" alt="Delete" style="width:100%"></span>',
             select: function(ele){
                 cy.remove(ele);
                 infoPanel.classList.remove('visible');
@@ -147,7 +147,7 @@ const cxtMenuPrefs = {
         },
 
         {
-            content: '<span><img src="" id="expand" alt="Expand"style="width:100%"></span>',
+            content: '<span><img src="" id="expand" alt="Expand" style="width:100%"></span>',
             select: function(ele) {
                 expandNode(ele);
             }
