@@ -65,7 +65,6 @@ function disableButtons() {
 }
 
 function addNode(nodeJSON) {
-    // console.log("Adding:", nodeJSON.data.id);
     let node = cy.getElementById(nodeJSON.data.id);
     // Node is already in graph
     if(node.length) {
