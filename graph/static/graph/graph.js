@@ -12,6 +12,7 @@ const infoPanel = document.getElementById('info-panel');
 const nameHeading = document.getElementById('name-heading');
 const jobHeading = document.getElementById('job-heading');
 const jobList = document.getElementById('job-list');
+const MAX_NODES_EXPAND_ALL = 5;
 
 function refreshGraph() {
     cy.maxZoom(1);
@@ -73,18 +74,10 @@ function addNode(nodeJSON) {
     }
     // Node is not already in graph
     else {
-        // console.log("No cyNode");
-        // console.log(node);
-        if (!cy.nodes().size()) {
-            enableButtons();
-        }
         cy.add(nodeJSON);
-        // console.log("cy.nodes.size()", cy.nodes().size());
-        // if (cy.nodes().size()) {
         let node = cy.getElementById(nodeJSON.data.id);
         makeNodeSelected(node);
         activateInfoPanel(node);
-        // }
         refreshGraph();
     }
 }
@@ -114,7 +107,7 @@ function expandNode(ele) {
             refreshGraph();
             makeNodeSelected(ele);
             activateInfoPanel(ele);
-        })
+        });
 }
 
 const cxtMenuPrefs = {
@@ -149,10 +142,6 @@ const cxtMenuPrefs = {
             select: function(ele){
                 cy.remove(ele);
                 infoPanel.classList.remove('visible');
-                if (!cy.nodes().size()) {
-                    disableButtons();
-                }
-                // console.log('Current size of graph:', cy.nodes().size())
                 refreshGraph();
             },
         },
@@ -161,9 +150,6 @@ const cxtMenuPrefs = {
             content: '<span><img src="" id="expand" alt="Expand"style="width:100%"></span>',
             select: function(ele) {
                 expandNode(ele);
-                // makeNodeSelected(ele);
-                // activateInfoPanel(ele);
-                // refreshGraph();
             }
         }
     ]
@@ -255,5 +241,18 @@ function loadCy(elements) {
         selectEdges(node.id());
 
         activateInfoPanel(node);
-});
+    });
+
+    cy.on('layoutstop', function() {
+        if(!cy.nodes().size()) {
+            disableButtons();
+        }
+        else if(cy.nodes().size() <= MAX_NODES_EXPAND_ALL) {
+            enableButtons();
+        }
+        else {
+            clearGraphBtn.removeAttribute('disabled');
+            expandAllBtn.setAttribute('disabled', 'true');
+        }
+    });
 }
