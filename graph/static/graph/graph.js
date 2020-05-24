@@ -6,6 +6,8 @@ let graphLayout = cy.layout(layoutPrefs);
 
 const searchBox = document.getElementById('search-input');
 const searchForm = document.getElementById('search-form');
+const expandAllBtn = document.getElementById('expand-all');
+const clearGraphBtn = document.getElementById('clear-graph');
 const infoPanel = document.getElementById('info-panel');
 const nameHeading = document.getElementById('name-heading');
 const jobHeading = document.getElementById('job-heading');
@@ -51,6 +53,16 @@ function activateInfoPanel(node) {
     infoPanel.classList.add('visible');
 }
 
+function enableButtons() {
+    clearGraphBtn.removeAttribute('disabled');
+    expandAllBtn.removeAttribute('disabled');
+}
+
+function disableButtons() {
+    clearGraphBtn.setAttribute('disabled', 'true');
+    expandAllBtn.setAttribute('disabled', 'true');
+}
+
 function addNode(nodeJSON) {
     // console.log("Adding:", nodeJSON.data.id);
     let node = cy.getElementById(nodeJSON.data.id);
@@ -63,15 +75,46 @@ function addNode(nodeJSON) {
     else {
         // console.log("No cyNode");
         // console.log(node);
+        if (!cy.nodes().size()) {
+            enableButtons();
+        }
         cy.add(nodeJSON);
         // console.log("cy.nodes.size()", cy.nodes().size());
-        if (cy.nodes().size()) {
-            let node = cy.getElementById(nodeJSON.data.id);
-            makeNodeSelected(node);
-            activateInfoPanel(node);
-        }
+        // if (cy.nodes().size()) {
+        let node = cy.getElementById(nodeJSON.data.id);
+        makeNodeSelected(node);
+        activateInfoPanel(node);
+        // }
         refreshGraph();
     }
+}
+
+function clearGraph() {
+    cy.nodes().remove();
+    disableButtons();
+    infoPanel.classList.remove('visible');
+}
+
+function expandAll() {
+    for(let node of cy.nodes()) {
+        if (node.data('expanded') === 'false') {
+            expandNode(node);
+        }
+    }
+    refreshGraph();
+}
+
+function expandNode(ele) {
+    fetch('/api/neighbors/?uuid=' + ele.data('id'))
+        .then(response => response.json())
+        .then((data) => {
+            ele.data('expanded', 'true');
+            let elements = data.elements;
+            cy.add(elements);
+            refreshGraph();
+            makeNodeSelected(ele);
+            activateInfoPanel(ele);
+        })
 }
 
 const cxtMenuPrefs = {
@@ -106,6 +149,9 @@ const cxtMenuPrefs = {
             select: function(ele){
                 cy.remove(ele);
                 infoPanel.classList.remove('visible');
+                if (!cy.nodes().size()) {
+                    disableButtons();
+                }
                 // console.log('Current size of graph:', cy.nodes().size())
                 refreshGraph();
             },
@@ -113,17 +159,11 @@ const cxtMenuPrefs = {
 
         {
             content: '<span><img src="" id="expand" alt="Expand"style="width:100%"></span>',
-            select: function(ele){
-                fetch('/api/neighbors/?uuid=' + ele.data('id'))
-                    .then(response => response.json())
-                    .then((data) => {
-                        ele.data('expanded', 'true');
-                        let elements = data.elements;
-                        cy.add(elements);
-                        refreshGraph();
-                        makeNodeSelected(ele);
-                        activateInfoPanel(ele);
-                    })
+            select: function(ele) {
+                expandNode(ele);
+                // makeNodeSelected(ele);
+                // activateInfoPanel(ele);
+                // refreshGraph();
             }
         }
     ]
@@ -138,6 +178,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
 searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
+});
+
+clearGraphBtn.addEventListener('click', () => {
+    clearGraph();
+});
+
+expandAllBtn.addEventListener('click', () => {
+    expandAll();
 });
 
 $("#search-input").autocomplete({
