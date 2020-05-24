@@ -243,9 +243,11 @@ export const cyPrefs = {
             style: {
                 'width': 2,
                 'line-color': '#ccc',
+                // 'line-color': '#212F3C',
                 'target-arrow-color': '#ccc',
                 // 'target-arrow-shape': 'triangle',
-                'curve-style': 'bezier'
+                'curve-style': 'bezier',
+                'opacity': .8
                 // 'curve-style': 'unbundled-bezier'
             }
         },
@@ -253,6 +255,7 @@ export const cyPrefs = {
         {
             selector: '.selected-edge',
             style: {
+                'opacity': 1,
                 'width': 2.5,
                 'line-color': '#F5B041'
             }
