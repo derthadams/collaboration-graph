@@ -16,12 +16,6 @@
     <script src="{% static "graph/cytoscape-cxtmenu.js"%}"></script>
     <script src="{% static "graph/cola.min.js"%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-cola@2.3.0/cytoscape-cola.js"></script>
-{#    <script src="https://unpkg.com/layout-base/layout-base.js"></script>#}
-{#    <script src="https://unpkg.com/cose-base/cose-base.js"></script>#}
-{#    <script src="https://cdn.jsdelivr.net/npm/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>#}
-{#    <script src="https://cdn.jsdelivr.net/npm/cytoscape-euler@1.2.2/cytoscape-euler.js"></script>#}
-{#    <script src="{% static "graph/auto-complete.min.js" %}"></script>#}
-{#    <script src="{% static "graph/awesomplete.js" %}"></script>#}
     <script>
         let img_url = "{% static '/graph/img/' %}"
     </script>
@@ -37,16 +31,12 @@
                         data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"></button>
             </form>
         </div>
-{#        <div>#}
             <button type="button" class="btn btn-outline-light mx-1" id="clear-graph" disabled>
                 Clear graph
             </button>
-{#        </div>#}
-{#        <div>#}
             <button type="button" class="btn btn-outline-light mx-1" id="expand-all" disabled>
                 Expand all
             </button>
-{#        </div>#}
     </nav>
     <div id="graph">
     </div>
@@ -61,11 +51,6 @@
                     </div>
                     <div class="card shadow-sm my-2 credit-list">
                         <ul class="list-group list-group-flush" id="job-list">
-{#                            <li class="list-group-item">Ryan's Mystery Playdate S3 (2020)</li>#}
-{#                            <li class="list-group-item">Prop Culture S1 (2020)</li>#}
-{#                            <li class="list-group-item">Cannonball S1 (2020)</li>#}
-{#                            <li class="list-group-item">Tournament of Champions S1 (2020)</li>#}
-{#                            <li class="list-group-item">24 Hours to Hell and Back S3 (2019)</li>#}
                         </ul>
                     </div>
                 </div>

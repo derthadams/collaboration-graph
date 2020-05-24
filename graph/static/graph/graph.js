@@ -208,9 +208,7 @@ $("#search-input").autocomplete({
 
 function loadCy(elements) {
     cy.add(elements);
-    // cy.maxZoom(1);
     refreshGraph();
-    // graphLayout.run();
 
     cy.on('layoutstop', function() {
         cy.fit();
