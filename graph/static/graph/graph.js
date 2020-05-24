@@ -216,7 +216,7 @@ function loadCy(elements) {
     });
 
     cy.on('tapstart', 'node', function() {
-        alert("tapstart");
+        // alert("tapstart");
         setTimeout(function() {
             document.getElementById('collapse').src = img_url + "node_collapse_sm.png";
             document.getElementById('delete').src = img_url + "delete_sm.png";
