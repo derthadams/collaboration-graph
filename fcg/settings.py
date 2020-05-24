@@ -26,7 +26,7 @@ SECRET_KEY = '9o+p99m!^$_th)sp-@g8h$dq2b*)s=kei)$ygbg@-%tz1%&@vy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'graph.unscripted.camera', '54.193.189.13']
 
 
 # Application definition
