@@ -22,21 +22,23 @@
     <title>Network View Page</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <div class="col-md-4 col-xl-4 bd-sidebar py-1">
-            <form role="search" class="bd-search d-flex align-items-center" id="search-form">
+    <nav class="d-flex justify-content-start navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="col-sm-6 col-md-4 py-1">
+            <form role="search" class="d-flex align-items-center" id="search-form">
                 <input type="search" class="form-control" id="search-input" placeholder="Search for a name..."
                        aria-label="Search for..." autocomplete="off" data-docs-version="4.4">
                 <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
                         data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"></button>
             </form>
         </div>
+        <div class="col-sm-auto">
             <button type="button" class="btn btn-outline-light mx-1" id="clear-graph" disabled>
                 Clear graph
             </button>
             <button type="button" class="btn btn-outline-light mx-1" id="expand-all" disabled>
                 Expand all
             </button>
+        </div>
     </nav>
     <div id="graph">
     </div>
