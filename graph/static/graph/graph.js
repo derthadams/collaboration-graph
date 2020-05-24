@@ -215,7 +215,7 @@ function loadCy(elements) {
         cy.maxZoom(2);
     });
 
-    cy.on('mousedown', 'node', function() {
+    cy.on('tapstart', 'node', function() {
         // console.log('mousedown');
         setTimeout(function() {
             document.getElementById('collapse').src = img_url + "node_collapse_sm.png";
