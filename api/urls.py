@@ -1,4 +1,14 @@
-from django.urls import path, re_path
+"""
+Derth Adams
+CS 406
+June 5, 2020
+
+File name:      api/urls.py
+Description:    Sets urlpatterns, which is a list of URL regex patterns along
+                with the corresponding View classses that should be invoked when
+                the user enters a URL matching that pattern.
+"""
+from django.urls import re_path
 
 from . import views
 
