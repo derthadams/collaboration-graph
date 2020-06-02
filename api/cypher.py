@@ -1,5 +1,21 @@
+"""
+Derth Adams
+CS 406
+June 5, 2020
+
+File name:      cypher.py
+Description:    Contains Python functions that interact with the Neo4j
+                database over the Bolt protocol.
+"""
 from neo4j import GraphDatabase, basic_auth
 from .neo_config import *
+
+"""
+Function name:  open_neo4j_session()
+Description:    Opens a connection to the Neo4j database using credentials
+                imported from .neo_config.
+Returns:        A Neo4j driver object representing the database connection
+"""
 
 
 def open_neo4j_session():
@@ -8,11 +24,30 @@ def open_neo4j_session():
     return neo_driver
 
 
+"""
+Function name:  get_name_index(tx, term)
+Description:    Runs a database query that returns name search results
+Receives:       tx      A Neo4j transaction object
+                term    The name search term
+Returns:        A Neo4j result object containing the search results
+"""
+
+
 def get_name_index(tx, term):
     return tx.run("MATCH (p:Person) WHERE toLower(p.fullName) CONTAINS $term "
                   "RETURN p.fullName, p.uuid, p.jobTitle, p.season_list "
                   "LIMIT 15 ",
                   term=term)
+
+
+"""
+Function name:  get_first_neighbors(tx, uuid)
+Description:    Runs a database query that returns the first neighbors of a
+                Person node
+Receives:       tx      A Neo4j transaction object
+                uuid    The uuid of the node whose neighbors you want
+Returns:        A Neo4j result object containing the search results
+"""
 
 
 def get_first_neighbors(tx, uuid):
@@ -23,6 +58,21 @@ def get_first_neighbors(tx, uuid):
                   "     r.seasons_in_common, r.season_list, q.uuid, "
                   "     q.fullName, q.season_list, q.jobTitle ",
                   uuid=uuid)
+
+
+"""
+Function name:  parse_neighbor_results(uuid)
+Description:    Takes the UUID of a root node being expanded to its first
+                neighbors, runs a Neo4j query to find the first neighbors and
+                the edges that connect them to the root, then parses the
+                database result and writes the data to a Python dictionary
+                so that it can be converted to JSON and imported to
+                Cytoscape.js
+Receives:       uuid    The UUID of the root node being expanded to its first
+                        neighbors
+Returns:        A dict containing a list of dicts: each dict in the list
+                represents either a node or an edge.
+"""
 
 
 def parse_neighbor_results(uuid):
@@ -66,6 +116,19 @@ def parse_neighbor_results(uuid):
     return response
 
 
+"""
+Function name:  parse_name_list(term)
+Description:    Takes a name search term, runs a Neo4j query to find matching
+                nodes, then parses the query result into a Python list of
+                dictionaries wrapped in a larger dictionary so that it can
+                be converted to JSON and passed to the autocomplete
+                search box.
+Receives:       term    The name search term    
+Returns:        A dict containing a list of dicts, each one representing a
+                Person node whose fullName field matched the search term.
+"""
+
+
 def parse_name_list(term):
     neo_driver = open_neo4j_session()
     with neo_driver.session() as session:
@@ -84,31 +147,4 @@ def parse_name_list(term):
     elements = {
         'name_list': name_list
     }
-    return elements
-
-
-def parse_initial_node(uuid):
-    nodes = []
-    neo_driver = open_neo4j_session()
-    with neo_driver.session() as session:
-        results = session.read_transaction(get_initial_node, uuid)
-    session.close()
-
-    for result in results:
-        node = {
-            'group': 'nodes',
-            'data': {
-                'id': result['p.uuid'],
-                'par': '0',
-                'expanded': 'false',
-                'full_name': result['p.fullName'],
-                'job_title': result['p.jobTitle'],
-                'season_list': result['p.season_list']
-            }
-        }
-        nodes.append(node)
-    elements = {
-        'nodes': nodes
-    }
-
     return elements
