@@ -46,7 +46,7 @@ function refreshGraph() {
 /*******************************************************************************
 * Function name:    selectEdges(nodeID)
 * Description:      Selects all edges incident on a given node.
-* Receives:         nodeID  uuid of the cytoscape node object
+* Receives:         nodeID  (string) uuid of the cytoscape node object
 *******************************************************************************/
 
 function selectEdges(nodeID) {
@@ -180,19 +180,19 @@ function expandAll() {
 *                   argument. Makes a GET request to the API endpoint
 *                   /api/neighbors/ and adds the resulting collection of
 *                   nodes to cy.
-* Receives:         ele     A cytoscape node object
+* Receives:         node     A cytoscape node object
 *******************************************************************************/
 
-function expandNode(ele) {
-    fetch('/api/neighbors/?uuid=' + ele.data('id'))
+function expandNode(node) {
+    fetch('/api/neighbors/?uuid=' + node.data('id'))
         .then(response => response.json())
         .then((data) => {
-            ele.data('expanded', 'true');
+            node.data('expanded', 'true');
             let elements = data.elements;
             cy.add(elements);
             refreshGraph();
-            makeNodeSelected(ele);
-            activateInfoPanel(ele);
+            makeNodeSelected(node);
+            activateInfoPanel(node);
         });
 }
 
@@ -253,20 +253,29 @@ window.addEventListener('DOMContentLoaded', function() {
     loadCy(elements);
 });
 
-// Attaches 'submit' event listener to the search form which will prevent the
-// page from reloading if the user hits enter.
+/*******************************************************************************
+* Event:    submit
+* Target:   searchForm
+* Callback: Prevents the page from reloading if the user hits enter
+*******************************************************************************/
 searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
 });
 
-// Attaches 'click' event listener to the "Clear graph" button that triggers
-// clearGraph().
+/*******************************************************************************
+* Event:    click
+* Target:   clearGraphBtn
+* Callback: Calls clearGraph() when "Clear graph" button is clicked.
+*******************************************************************************/
 clearGraphBtn.addEventListener('click', () => {
     clearGraph();
 });
 
-// Attaches 'click' event listener to the "Expand all" button that triggers
-// expandAll().
+/*******************************************************************************
+* Event:    click
+* Target:   expandAllBtn
+* Callback: Calls expandAll() when "Expand all" button is clicked.
+*******************************************************************************/
 expandAllBtn.addEventListener('click', () => {
     expandAll();
 });
