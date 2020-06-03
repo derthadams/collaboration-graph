@@ -4,8 +4,8 @@ CS 406
 June 5, 2020
 
 File name:      cypher.py
-Description:    Contains Python functions that interact with the Neo4j
-                database over the Bolt protocol.
+Description:    Contains functions which interact with the Neo4j
+                database using the Bolt protocol.
 """
 from neo4j import GraphDatabase, basic_auth
 from .neo_config import *
@@ -28,7 +28,7 @@ def open_neo4j_session():
 Function name:  get_name_index(tx, term)
 Description:    Runs a database query that returns name search results
 Receives:       tx      A Neo4j transaction object
-                term    The name search term
+                term    (string) The name search term
 Returns:        A Neo4j result object containing the search results
 """
 
@@ -45,7 +45,7 @@ Function name:  get_first_neighbors(tx, uuid)
 Description:    Runs a database query that returns the first neighbors of a
                 Person node
 Receives:       tx      A Neo4j transaction object
-                uuid    The uuid of the node whose neighbors you want
+                uuid    (string) The uuid of the node
 Returns:        A Neo4j result object containing the search results
 """
 
@@ -68,8 +68,8 @@ Description:    Takes the UUID of a root node being expanded to its first
                 database result and writes the data to a Python dictionary
                 so that it can be converted to JSON and imported to
                 Cytoscape.js
-Receives:       uuid    The UUID of the root node being expanded to its first
-                        neighbors
+Receives:       uuid    (string) The UUID of the root node being expanded to its
+                        first neighbors
 Returns:        A dict containing a list of dicts: each dict in the list
                 represents either a node or an edge.
 """
@@ -123,7 +123,7 @@ Description:    Takes a name search term, runs a Neo4j query to find matching
                 dictionaries wrapped in a larger dictionary so that it can
                 be converted to JSON and passed to the autocomplete
                 search box.
-Receives:       term    The name search term    
+Receives:       term    (string) The name search term    
 Returns:        A dict containing a list of dicts, each one representing a
                 Person node whose fullName field matched the search term.
 """
