@@ -5,8 +5,11 @@ June 5, 2020
 
 File name:      api/urls.py
 Description:    Sets urlpatterns, which is a list of URL regex patterns along
-                with the corresponding View classses that should be invoked when
+                with the corresponding View classes that should be invoked when
                 the user enters a URL matching that pattern.
+
+                Routes the URL /neighbors/ to the class NeighborsAPIView and the
+                URL /list/ to the class ListAPIView.
 """
 from django.urls import re_path
 
