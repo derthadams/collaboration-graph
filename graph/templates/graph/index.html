@@ -1,36 +1,53 @@
+<!--
+ Derth Adams
+ CS 406
+ June 5, 2020
+
+ File name:     index.html
+ Description:   HTML template for the Network View page
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Get the path of the static file folder-->
     {% load static %}
 
-    <!-- Bootstrap CSS -->
+    <!-- CSS files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static  "graph/style.css"%}">
     <link rel="stylesheet" href="{% static "graph/jquery-ui.min.css" %}">
 
+    <!-- Javascript files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.14.1/cytoscape.min.js"></script>
     <script src="{% static "graph/cytoscape-cxtmenu.js"%}"></script>
     <script src="{% static "graph/cola.min.js"%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-cola@2.3.0/cytoscape-cola.js"></script>
+
+    <!-- Get the path of the static image folder so that it can be used in
+         graph.js to dynamically add the icons to the context menu -->
     <script>
         let img_url = "{% static 'graph/img/' %}"
     </script>
     <title>Network View Page</title>
 </head>
 <body>
+    <!-- Navigation bar -->
     <nav class="d-flex justify-content-start navbar navbar-expand-sm navbar-dark bg-secondary">
         <div class="col-sm-6 col-md-4 py-1">
             <form role="search" class="d-flex align-items-center" id="search-form">
+                <!-- Search box -->
                 <input type="search" class="form-control" id="search-input" placeholder="Search for a name..."
                        aria-label="Search for..." autocomplete="off" data-docs-version="4.4">
                 <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
                         data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"></button>
             </form>
         </div>
+        <!-- Buttons -->
         <div class="col-sm-auto collapse navbar-collapse">
             <button type="button" class="btn btn-outline-light mx-1" id="clear-graph" disabled>
                 Clear graph
@@ -40,8 +57,10 @@
             </button>
         </div>
     </nav>
+    <!-- Graph visualization container -->
     <div id="graph">
     </div>
+    <!-- Information panel -->
      <div class="container-fluid">
             <div class="row justify-content-left px-3 py-4">
                 <div class="col-6 col-md-4" id="info-panel">
@@ -58,6 +77,7 @@
                 </div>
             </div>
         </div>
+    <!-- More Javascript files -->
     <script src="{% static "graph/jquery.js" %}"></script>
     <script src="{% static "graph/jquery-ui.min.js" %}"></script>
     <script type = "module" src="{% static '/graph/graph.js' %}"></script>
