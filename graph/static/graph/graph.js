@@ -213,7 +213,7 @@ const cxtMenuPrefs = {
     // to execute when each one is selected.
     commands: [
         {
-            content: '<span><img src="" id="collapse" alt="Collapse" style="width:100%"></span>',
+            content: '<span><img src="' + img_url + 'node_collapse_sm.png" id="collapse" alt="Collapse" style="width:100%"></span>',
             // Selects and deletes the children of the selected node
             select: function(ele){
                 ele.data('expanded', 'false');
@@ -224,7 +224,7 @@ const cxtMenuPrefs = {
         },
 
         {
-            content: '<span><img src="" id="delete" alt="Delete" style="width:100%"></span>',
+            content: '<span><img src="' + img_url + 'delete_sm.png" id="delete" alt="Delete" style="width:100%"></span>',
             // Deletes the selected node
             select: function(ele){
                 cy.remove(ele);
@@ -234,7 +234,7 @@ const cxtMenuPrefs = {
         },
 
         {
-            content: '<span><img src="" id="expand" alt="Expand" style="width:100%"></span>',
+            content: '<span><img src="' + img_url + 'expanded_sm.png" id="expand" alt="Expand" style="width:100%"></span>',
             // Expands the first children of the selected node
             select: function(ele) {
                 expandNode(ele);
@@ -344,16 +344,16 @@ function loadCy(elements) {
     *           context menu appears), then adds the icons to the three
     *           context menu options.
     ***************************************************************************/
-    cy.on('tapstart', 'node', function() {
-        setTimeout(function() {
-            document.getElementById('collapse').src = img_url
-                + "node_collapse_sm.png";
-            document.getElementById('delete').src = img_url
-                + "delete_sm.png";
-            document.getElementById('expand').src = img_url
-                + "expanded_sm.png";
-        }, 510);
-    });
+    // cy.on('tapstart', 'node', function() {
+    //     setTimeout(function() {
+    //         document.getElementById('collapse').src = img_url
+    //             + "node_collapse_sm.png";
+    //         document.getElementById('delete').src = img_url
+    //             + "delete_sm.png";
+    //         document.getElementById('expand').src = img_url
+    //             + "expanded_sm.png";
+    //     }, 510);
+    // });
 
     /***************************************************************************
     * Event:    tap
