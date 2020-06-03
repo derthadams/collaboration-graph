@@ -10,7 +10,7 @@ Description:    Sets urlpatterns, which is a list of URL regex patterns and
                 graph app, and the /api/ url to the urls specified in the
                 api app.
 
-Auto-generated docstring starts below the line
+Auto-generated docstring starts below the line:
 --------------------------------------------
 fcg URL Configuration
 
