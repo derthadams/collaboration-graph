@@ -338,24 +338,6 @@ function loadCy(elements) {
     refreshGraph();
 
     /***************************************************************************
-    * Event:    tapstart
-    * Target:   node
-    * Callback: Waits for the user to hold down on the node for 510ms (until the
-    *           context menu appears), then adds the icons to the three
-    *           context menu options.
-    ***************************************************************************/
-    // cy.on('tapstart', 'node', function() {
-    //     setTimeout(function() {
-    //         document.getElementById('collapse').src = img_url
-    //             + "node_collapse_sm.png";
-    //         document.getElementById('delete').src = img_url
-    //             + "delete_sm.png";
-    //         document.getElementById('expand').src = img_url
-    //             + "expanded_sm.png";
-    //     }, 510);
-    // });
-
-    /***************************************************************************
     * Event:    tap
     * Target:   Background of the graph visualization
     * Callback: Disables the info panel and unselects any selected edges if the
@@ -378,7 +360,6 @@ function loadCy(elements) {
     ***************************************************************************/
     cy.on('tap', 'node', function(evt){
         let node = evt.target;
-        // console.log('You just clicked ' + node.id());
         unselectEdges();
         selectEdges(node.id());
 
