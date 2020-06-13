@@ -214,7 +214,6 @@ const cxtMenuPrefs = {
     commands: [
         {
             content: '<span><img src="/static/graph/img/node_collapse_sm.png" id="collapse" alt="Collapse" style="width:100%"></span>',
-            // content: '<span><img src="' + img_url + 'node_collapse_sm.png" id="collapse" alt="Collapse" style="width:100%"></span>',
             // Selects and deletes the children of the selected node
             select: function(ele){
                 ele.data('expanded', 'false');
@@ -226,7 +225,6 @@ const cxtMenuPrefs = {
 
         {
             content: '<span><img src="/static/graph/img/delete_sm.png" id="delete" alt="Delete" style="width:100%"></span>',
-            // content: '<span><img src="' + img_url + 'delete_sm.png" id="delete" alt="Delete" style="width:100%"></span>',
             // Deletes the selected node
             select: function(ele){
                 cy.remove(ele);
@@ -237,7 +235,6 @@ const cxtMenuPrefs = {
 
         {
             content: '<span><img src="/static/graph/img/expanded_sm.png" id="expand" alt="Expand" style="width:100%"></span>',
-            // content: '<span><img src="' + img_url + 'expanded_sm.png" id="expand" alt="Expand" style="width:100%"></span>',
             // Expands the first children of the selected node
             select: function(ele) {
                 expandNode(ele);
