@@ -52,9 +52,9 @@ You can access a context menu on any node in the graph by clicking and holding o
 
 <img align="left" width="50" height="50" src="https://github.com/derthadams/406_fcg_django/blob/master/images/expanded_sm.png" alt="Expand icon"> Expand: Finds all of the people that the person has collaborated with in the last five years (the "first neighbors" of the node) and adds them to the graph.
 
-![Collapse] Collapse: Removes all of the people added to the graph as a result of a previous expansion of the node.
+<img align="left" width="50" height="50" src="https://github.com/derthadams/406_fcg_django/blob/master/images/node_collapse_sm.png" alt="Collapse icon"> Collapse: Removes all of the people added to the graph as a result of a previous expansion of the node.
 
-![Delete] Delete: Removes the node and all edges incident to it.
+<img align="left" width="50" height="50" src="https://github.com/derthadams/406_fcg_django/blob/master/images/delete_sm.png" alt="Delete icon"> Delete: Removes the node and all edges incident to it.
 
 Here's our initial node expanded to its first neighbors:
 
