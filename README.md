@@ -15,11 +15,11 @@ the Cytoscape.js graph visualization library on the front end.
 The current version is a proof of concept for a
 graph search feature that would be part of a larger career networking app for film and TV 
 freelancers. The sample data used in the 
-demo represents the TV credits of 500 TV camera freelancers, scraped from IMDb.
+demo represents the TV credits of 500 camera freelancers, scraped from IMDb.
 
 ## How to use the app
 
-Go to [**graph.unscripted.camera**](https://graph.unscripted.camera) using a recent version of Chrome or Safari. The app will run on iOS but the layout is only really usable on a large screen like an iPad Pro. When the app loads, it looks like this:
+Go to [**graph.unscripted.camera**](https://graph.unscripted.camera) using a recent version of Chrome or Safari on a laptop or desktop. The app will run on iOS but you'll want to use a device with a large screen like an iPad Pro to take full advantage of the layout. When the app loads, it looks like this:
 
 ![Screenshot 2](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_2.jpg)
 
@@ -49,7 +49,7 @@ With an initial node on the graph, the "Clear graph" and "Expand all" buttons be
 
 ![Screenshot 6](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_6.jpg)
 
-You can access a context menu on any node in the graph by clicking and holding on that node. The menu allows you to expand, collapse, or delete the node. To select one of the options, move your cursor or finger over the corresponding icon and release.
+You can access a context menu on any node in the graph by clicking/tapping and holding on that node. The menu allows you to expand, collapse, or delete the node. To select one of the options, move your cursor or finger over the corresponding icon and release.
 
 <div>
 <img align="left" width="48" height="48" src="https://github.com/derthadams/406_fcg_django/blob/master/images/expanded_sm.png" alt="Expand icon"> 
@@ -66,6 +66,7 @@ You can access a context menu on any node in the graph by clicking and holding o
 <strong>Delete:</strong> Removes the node and all edges incident to it.
 </div>
 <br>
+
 Here's our initial node expanded to its first neighbors:
 
 ![Screenshot 7](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_7.jpg)
