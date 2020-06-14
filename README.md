@@ -90,3 +90,29 @@ Here are three nodes added to the graph one at a time with the search box:
 By clicking the "Expand all" button, you can expand all three nodes' first neighbors at once and see their mutual connections:
 
 ![Screenshot 11](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_11.jpg)
+
+## Project Files
+
+Some of the files in the repository are boilerplate created by Django, or 
+open-source Javascript libraries. The files I wrote or modified are:
+
+    api/
+        apps.py
+        cypher.py
+        urls.py
+        views.py
+    fcg/
+        settings.py
+        urls.py
+    graph/
+        static/
+            graph/
+                graph.js
+                style.css
+        templates/
+            graph/
+                index.html
+        apps.py
+        urls.py
+        views.py
+    cypher_queries.txt
