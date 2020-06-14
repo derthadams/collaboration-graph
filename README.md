@@ -18,6 +18,7 @@ freelancers. The sample data used in the
 demo represents the TV credits of 500 TV camera freelancers, scraped from IMDb.
 
 ##How to use the app
+
 Go to [**graph.unscripted.camera**](https://graph.unscripted.camera) using a recent version of Chrome or Safari. The app will run on iOS but the layout is only really usable on a large screen like an iPad Pro. When the app loads, it looks like this:
 
 ![Screenshot 2](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_2.jpg)
