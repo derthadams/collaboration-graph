@@ -1,6 +1,6 @@
 ## Camera Freelancer Collaboration Graph
 
-![Demo Screenshot](https://derthadams.github.com/images/screenshot_1.jpg)
+![Demo Screenshot](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_1.jpg)
 
 Live demo at [**graph.unscripted.camera**](https://graph.unscripted.camera).
 
