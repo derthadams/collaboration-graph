@@ -1,8 +1,4 @@
 """
-Derth Adams
-CS 406
-June 5, 2020
-
 File name:      api/views.py
 Description:    Contains the View classes for the api app
 """

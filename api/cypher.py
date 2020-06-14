@@ -1,8 +1,4 @@
 """
-Derth Adams
-CS 406
-June 5, 2020
-
 File name:      cypher.py
 Description:    Contains functions which interact with the Neo4j
                 database using the Bolt protocol.

@@ -1,0 +1,42 @@
+// Cypher Queries to Run in the Neo4j Console
+//
+// These are two database queries I wrote in order to create two new properties on
+// the Person nodes in the Neo4j database for use in the web app: job title and season 
+// list (which is a list of the last 5 TV show seasons that person worked on).
+//
+// I ran these queries in the database console in order to prepare the database for
+// use with the web app. In a production environment these queries would be run from
+// time to time on a set schedule so that the properties would reflect the latest 
+// information.
+
+
+// ------------------------
+// Set job_title for Person
+// ------------------------
+// Finds the 10 most recent credits for each person in the database, finds the job 
+// title that the person held most frequently for those 10 credits, and writes it to the
+// Person node as a property "jobTitle"
+
+MATCH (p:Person)-[r:WORKED_ON]->(se:Season)
+WHERE NOT r.jobTitle = ""
+WITH p, r, se
+ORDER BY se.roughStart DESC
+WITH p, COLLECT(r.jobTitle)[..10] as jobTitles
+WITH p, apoc.coll.sortMaps(apoc.coll.frequencies(jobTitles), "count") as frequencies
+SET p.jobTitle = frequencies[0].item
+RETURN p.fullName, p.jobTitle
+
+
+// --------------------------
+// Set season_list for Person
+// --------------------------
+// Finds the 5 most recent credits for each person in the database, formats the credits
+// as a list where each entry is of the form "<show title> S<season number> (<year of 
+// release>)". Writes the list to the Person node as the property "season_list"
+
+MATCH (p:Person)-[:WORKED_ON]->(se:Season)
+WITH p, se
+ORDER BY se.roughStart DESC
+WITH p, COLLECT(DISTINCT se.seasonTitle + ' (' + toString(se.roughStart.year) + ")")[..5] AS season_list
+SET p.season_list = season_list
+RETURN p.fullName, season_list

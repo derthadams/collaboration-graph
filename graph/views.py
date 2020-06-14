@@ -1,8 +1,4 @@
 """
-Derth Adams
-CS 406
-June 5, 2020
-
 File name:      graph/views.py
 Description:    Contains the View function for the graph app
 """

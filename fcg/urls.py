@@ -1,8 +1,4 @@
 """
-Derth Adams
-CS 406
-June 5, 2020
-
 File name:      fcg/urls.py
 Description:    Sets urlpatterns, which is a list of URL regex patterns and
                 the destinations those urls should be routed to. Routes the

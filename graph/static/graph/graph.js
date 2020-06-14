@@ -1,10 +1,6 @@
 /*******************************************************************************
-* Derth Adams
-* CS 406
-* June 5, 2020
-*
 * File name:        graph.js
-* Description:      Contains all the logic for the client-side graph app
+* Description:      Contains the logic for the client-side graph app
 *******************************************************************************/
 import { cyPrefs, layoutPrefs } from "./cy_config.js";
 
