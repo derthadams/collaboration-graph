@@ -1,5 +1,4 @@
 ## Camera Freelancer Collaboration Graph
-<img src="https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_1.jpg" width=960>
 
 ![Demo Screenshot](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_1.jpg)
 
