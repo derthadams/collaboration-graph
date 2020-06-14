@@ -51,17 +51,20 @@ With an initial node on the graph, the "Clear graph" and "Expand all" buttons be
 
 You can access a context menu on any node in the graph by clicking and holding on that node. The menu allows you to expand, collapse, or delete the node. To select one of the options, move your cursor or finger over the corresponding icon and release.
 
+<div>
 <img align="left" width="48" height="48" src="https://github.com/derthadams/406_fcg_django/blob/master/images/expanded_sm.png" alt="Expand icon"> 
+<strong>Expand:</strong> Finds all of the people that the person has collaborated with in the last five years (the "first neighbors" of the node) and adds them to the graph.
+</div>
 
-**Expand:** Finds all of the people that the person has collaborated with in the last five years (the "first neighbors" of the node) and adds them to the graph.
-
+<div>
 <img align="left" width="48" height="48" src="https://github.com/derthadams/406_fcg_django/blob/master/images/node_collapse_sm.png" alt="Collapse icon"> 
+<strong>Collapse:</strong> Removes all of the people added to the graph as a result of a previous expansion of the node.
+</div>
 
-**Collapse:** Removes all of the people added to the graph as a result of a previous expansion of the node.
-
+<div>
 <img align="left" width="48" height="48" src="https://github.com/derthadams/406_fcg_django/blob/master/images/delete_sm.png" alt="Delete icon"> 
-
-**Delete:** Removes the node and all edges incident to it.
+<strong>Delete:</strong> Removes the node and all edges incident to it.
+</div>
 
 Here's our initial node expanded to its first neighbors:
 
