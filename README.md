@@ -13,7 +13,7 @@ the Cytoscape.js graph visualization library on the front end.
 The current version is a proof of concept for a
 graph search feature that would be part of a larger career networking app for film and TV 
 freelancers. The sample data used in the 
-demo represents the TV credits of 500 camera freelancers, scraped from IMDb.
+demo represents the TV credits of 500 camera freelancers, scraped from IMDb using [IMDb-to-neo4j](https://github.com/derthadams/IMDB-to-neo4j).
 
 ## How to use the app
 
