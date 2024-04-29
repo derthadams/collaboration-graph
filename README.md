@@ -17,7 +17,7 @@ demo represents the TV credits of 500 camera freelancers, scraped from IMDb usin
 
 ## How to use the app
 
-Go to [**graph.unscripted.camera**](https://graph.unscripted.camera) using a recent version of Chrome or Safari on a laptop or desktop. The app will run on iOS but you'll want to use a device with a large screen like an iPad Pro to take full advantage of the layout. When the app loads, it looks like this:
+Use a recent version of Chrome or Safari on a laptop or desktop. The app will run on iOS but you'll want to use a device with a large screen like an iPad Pro to take full advantage of the layout. When the app loads, it looks like this:
 
 ![Screenshot 2](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_2.jpg)
 
