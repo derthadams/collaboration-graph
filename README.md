@@ -1,7 +1,5 @@
 # Camera Freelancer Collaboration Graph
 
-Live demo at [**graph.unscripted.camera**](https://graph.unscripted.camera), deployed on Amazon Web Services EC2.
-
 ![Demo Screenshot](https://github.com/derthadams/406_fcg_django/blob/master/images/screenshot_1.jpg)
 
 This app allows camera freelancers to explore their collaboration networks
